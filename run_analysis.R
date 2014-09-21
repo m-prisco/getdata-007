@@ -79,15 +79,81 @@ run_analysis = function() {
         extractData$activity[extractData$activity == i] = activNames[i]
     }
     
-    #################### RENAME VARIABLES
-    #################### colnames(extractData)
-    ####################
+    headerNames = c("subject", "activity")
+    
+    headerNames = c(headerNames, "time body accelerometer x mean", 
+                    "time body accelerometer y mean",
+                    "time body accelerometer z mean")
+    headerNames = c(headerNames, "time body accelerometer x standard deviation", 
+                    "time body accelerometer y standard deviation",
+                    "time body accelerometer z standard deviation")
+    headerNames = c(headerNames, "time gravity accelerometer x mean",
+                    "time gravity accelerometer y mean",
+                    "time gravity accelerometer z mean")
+    headerNames = c(headerNames, "time gravity accelerometer x standard deviation",
+                    "time gravity accelerometer y standard deviation",
+                    "time gravity accelerometer z standard deviation")
+    headerNames = c(headerNames, "time body accelerometer jerk x mean",
+                    "time body accelerometer jerk y mean",
+                    "time body accelerometer jerk z mean")
+    headerNames = c(headerNames, "time body accelerometer jerk x standard deviation",
+                    "time body accelerometer jerk y standard deviation",
+                    "time body accelerometer jerk z standard deviation")
+    headerNames = c(headerNames, "time body gyroscope x mean",
+                    "time body gyroscope y mean",
+                    "time body gyroscope z mean")
+    headerNames = c(headerNames, "time body gyroscope x standard deviation",
+                    "time body gyroscope y standard deviation",
+                    "time body gyroscope z standard deviation")
+    headerNames = c(headerNames, "time body gyroscope jerk x mean",
+                    "time body gyroscope jerk y mean",
+                    "time body gyroscope jerk z mean")
+    headerNames = c(headerNames, "time body gyroscope jerk x standard deviation",
+                    "time body gyroscope jerk y standard deviation",
+                    "time body gyroscope jerk z standard deviation")
+    headerNames = c(headerNames, "time body accelerometer magnitude mean",
+                    "time body accelerometer magnitude standard deviation",
+                    "time gravity accelerometer magnitude mean",
+                    "time gravity accelerometer magnitude standard deviation",
+                    "time body accelerometer jerk  magnitude mean",
+                    "time body accelerometer jerk  magnitude standard deviation")
+    headerNames = c(headerNames, "time body gyroscope magnitude mean",
+                    "time body gyroscope magnitude standard deviation",
+                    "time body gyroscope jerk  magnitude mean",
+                    "time body gyroscope jerk  magnitude standard deviation")
+    headerNames = c(headerNames, "frequency body accelerometer x mean",
+                    "frequency body accelerometer y mean",
+                    "frequency body accelerometer z mean")
+    headerNames = c(headerNames, "frequency body accelerometer x standard deviation",
+                    "frequency body accelerometer y standard deviation",
+                    "frequency body accelerometer z standard deviation")
+    headerNames = c(headerNames, "frequency body accelerometer jerk x mean",
+                    "frequency body accelerometer jerk y mean",
+                    "frequency body accelerometer jerk z mean")
+    headerNames = c(headerNames, "frequency body accelerometer jerk x standard deviation",
+                    "frequency body accelerometer jerk y standard deviation",
+                    "frequency body accelerometer jerk z standard deviation")
+    headerNames = c(headerNames, "frequency body gyroscope x mean",
+                    "frequency body gyroscope y mean",
+                    "frequency body gyroscope z mean")
+    headerNames = c(headerNames, "frequency body gyroscope x standard deviation",
+                    "frequency body gyroscope y standard deviation",
+                    "frequency body gyroscope z standard deviation")
+    headerNames = c(headerNames, "frequency body accelerometer magnitude mean",
+                    "frequency body accelerometer magnitude standard deviation",
+                    "frequency bodybody accelerometer jerk magnitude mean",
+                    "frequency bodybody accelerometer jerk magnitude standard deviation")
+    headerNames = c(headerNames, "frequency bodybody gyroscope magnitude mean",
+                    "frequency bodybody gyroscope magnitude standard deviation",
+                    "frequency bodybody gyroscope jerk magnitude mean",
+                    "frequency bodybody gyroscope jerk magnitude standard deviation")
+    colnames(extractData) = headerNames
     
     #extractData[extractData$activity == "WALKING"]
     tidyData = data.frame()
     aves = numeric()
-    for (i in 1:30) { ##### 30
-        for (j in 1:6) { ##### 6
+    for (i in 1:30) {
+        for (j in 1:6) {
             newRecord = data.frame(i, activNames[j])
             for (n in 3:ncol(extractData)) {
                 aves = mean(extractData[,n]
